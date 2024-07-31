@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from './userContext';
 
 const Home = () => {
-	const currUser = false;
+	const currUser = useContext(UserContext)
 	const welcomeMsg = <h2>Welcome Back, {currUser.username}</h2>;
 	const signupMsg = (
 		<div>
@@ -14,7 +16,7 @@ const Home = () => {
 		</div>
 	);
 
-	const homePage = currUser ? welcomeMsg : signupMsg;
+	const homePage = currUser.username ? welcomeMsg : signupMsg;
 	return (
 		<div>
 			<h1>Jobly</h1>

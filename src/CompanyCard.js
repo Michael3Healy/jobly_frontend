@@ -1,4 +1,3 @@
-import './CompanyCard.css';
 
 const CompanyCard = ({ handle, name, description, numEmployees }) => {
 	return (
