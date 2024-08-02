@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './CompanyList.css';
 import useFields from './hooks/useFields';
-import { ensureLoggedIn } from './helpers/auth';
 
 const CompanyList = () => {
 	
 
 	const [companies, setCompanies] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState(ensureLoggedIn());
+	const [error, setError] = useState();
 	const [formData, handleChange, setFormData] = useFields({ name: '' });
 
 	const navigate = useNavigate();

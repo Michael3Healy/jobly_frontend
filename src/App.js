@@ -11,7 +11,7 @@ import ErrorAlert from './ErrorAlert';
 
 function App() {
 	const [token, setToken] = useLocalStorage('token', '');
-	const [currUser, setCurrUser] = useState({});
+	const [currUser, setCurrUser] = useLocalStorage('currUser', {});
 	const [error, setError] = useState(null);
 
 	const navigate = useNavigate();
