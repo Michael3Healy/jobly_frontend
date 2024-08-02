@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCard from './JobCard';
+import './CompanyDetail.css';
 
 const CompanyDetail = () => {
 	const { handle } = useParams();
@@ -28,13 +29,15 @@ const CompanyDetail = () => {
 	if (error) return <div>Error: {error}</div>;
 
 	return (
-		<div className='CompanyDetail'>
-			<h1>{company.name}</h1>
-			<h2>{company.description}</h2>
-			<div>
-				{company.jobs.map(j => (
-					<JobCard key={j.id} title={j.title} salary={j.salary} equity={j.equity} />
-				))}
+		<div className='CompanyDetail container'>
+			<div className='col-12 mt-4'>
+				<h1 className='fs-3'>{company.name}</h1>
+				<h2 className='fs-4 mb-4'>{company.description}</h2>
+				<div>
+					{company.jobs.map(j => (
+						<JobCard key={j.id} id={j.id} title={j.title} salary={j.salary} equity={j.equity} />
+					))}
+				</div>
 			</div>
 		</div>
 	);

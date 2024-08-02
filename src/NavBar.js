@@ -1,13 +1,14 @@
 import React from 'react';
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
-import { Navbar, Nav, NavItem, Button } from 'reactstrap';
+import { Navbar, Nav, NavItem } from 'reactstrap';
 import { useContext } from 'react';
 import UserContext from './userContext';
 
 function NavBar({ logout }) {
-	const currUser = useContext(UserContext)
+	const { currUser } = useContext(UserContext);
 
+	// eslint-disable-next-line
 	const loggedInLinks = (
 		<Nav className='ml-auto' navbar>
 			<NavItem>
@@ -20,9 +21,10 @@ function NavBar({ logout }) {
 				<NavLink to='/profile'>Profile</NavLink>
 			</NavItem>
 			<NavItem>
-				<Button color='link' onClick={logout} className='nav-link'>
+				{/* eslint-disable-next-line*/}
+				<a onClick={logout} className='logout'>
 					Logout
-				</Button>
+				</a>
 			</NavItem>
 		</Nav>
 	);
@@ -36,14 +38,14 @@ function NavBar({ logout }) {
 				<NavLink to='/signup'>Signup</NavLink>
 			</NavItem>
 		</Nav>
-	)
+	);
 
 	let links = currUser.username ? loggedInLinks : anonLinks;
-	
+
 	return (
 		<div>
-			<Navbar color='info' expand='md'>
-				<NavLink to='/'>
+			<Navbar color='light' expand='md'>
+				<NavLink to='/' className='navbar-brand'>
 					Jobly
 				</NavLink>
 				{links}

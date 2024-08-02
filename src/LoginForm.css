@@ -1,0 +1,7 @@
+.LoginForm {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	align-items: start;
+	height: 100%;
+	width: 100%;
+}

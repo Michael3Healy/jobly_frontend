@@ -11,8 +11,8 @@ import UserContext from './userContext';
 
 
 const RoutesList = ({ login, signup }) => {
-	const currUser = useContext(UserContext);
-	console.log('username: ', currUser.username);
+	const { currUser } = useContext(UserContext);
+
 	return (
 		<Routes>
 			<Route path='/' element={<Home />} />

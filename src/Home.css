@@ -1,0 +1,24 @@
+.Home {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	align-items: center;
+	height: 100%;
+	overflow: hidden;
+	min-height: calc(100vh - 60px) /* 60px is the height of the nav bar */;
+}
+
+.Home-btn {
+	background-color: #ffffff; /* White background */
+	color: black; /* Dark text color for contrast */
+	padding: 5px 20px; /* Adjust padding */
+	border-radius: 5px; /* Rounded corners */
+	font-size: 16px; /* Font size */
+	font-weight: bold; /* Font weight */
+    margin: 10px;
+}
+
+.Home-btn:hover {
+    background-color: #333333; /* Dark background */
+    color: #ffffff; /* Light text color for contrast */
+    cursor: pointer; /* Cursor on hover */
+}

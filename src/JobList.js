@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import JoblyApi from './api';
 import JobCard from './JobCard';
+import './JobList.css';
 
 const JobList = () => {
 	const [jobs, setJobs] = useState([]);
@@ -26,10 +27,14 @@ const JobList = () => {
 	if (error) return <div>Error: {error}</div>;
 
 	return (
-		<div className='JobList'>
-			{jobs.map(j => (
-					<JobCard key={j.id} title={j.title} salary={j.salary} equity={j.equity || 0} companyName={j.companyName} />
-			))}
+		<div className='JobList container'>
+			<div className='row justify-content-center'>
+				<div className='col-8'>
+					{jobs.map(j => (
+						<JobCard key={j.id} id={j.id} title={j.title} salary={j.salary} equity={j.equity || 0} companyName={j.companyName} />
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };

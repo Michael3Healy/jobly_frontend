@@ -1,0 +1,8 @@
+.SignupForm {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	align-items: start;
+	width: 100%;
+	overflow: hidden;
+	max-height: calc(100vh - 60px); /* 60px is the height of the nav bar */
+}

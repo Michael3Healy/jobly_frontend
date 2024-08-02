@@ -1,27 +1,32 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from './userContext';
+import './Home.css';
 
 const Home = () => {
-	const currUser = useContext(UserContext)
+	const { currUser } = useContext(UserContext);
 	const welcomeMsg = <h2>Welcome Back, {currUser.username}</h2>;
 	const signupMsg = (
 		<div>
 			<Link to='/login'>
-				<button className='btn btn-success'>Login</button>
+				<button className='btn Home-btn'>Login</button>
 			</Link>
 			<Link to='/signup'>
-				<button className='btn btn-info'>Sign Up</button>
+				<button className='btn Home-btn'>Sign Up</button>
 			</Link>
 		</div>
 	);
 
 	const homePage = currUser.username ? welcomeMsg : signupMsg;
 	return (
-		<div>
-			<h1>Jobly</h1>
-			<h4>All the jobs in one, convenient place.</h4>
-			{homePage}
+		<div className='Home'>
+			<div className='row'>
+				<div className='col-12'>
+					<h1 className='fs-1'>Jobly</h1>
+					<h2 className='fs-2'>All the jobs in one, convenient place.</h2>
+					{homePage}
+				</div>
+			</div>
 		</div>
 	);
 };
