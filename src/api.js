@@ -13,12 +13,12 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 class JoblyApi {
 	// the token for interactive with the API will be stored here.
 	static token;
+	static call = 1;
 
 	static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method);
+		console.debug('API Call:', endpoint, data, method, JoblyApi.call);
+		JoblyApi.call += 1;
 
-		//there are multiple ways to pass an authorization token, this is how you pass it in the header.
-		//this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
 		const url = `${BASE_URL}/${endpoint}`;
 		const headers = { Authorization: `Bearer ${JoblyApi.token}` };
 		const params = method === 'get' ? data : {};
@@ -52,35 +52,23 @@ class JoblyApi {
 	}
 
 	static async login(username, password) {
-		try {
-			let res = await this.request('auth/token', { username, password }, 'post');
-			return res.token;
-		} catch (err) {
-			return err;
-		}
+		let res = await this.request('auth/token', { username, password }, 'post');
+		return res.token;
 	}
 
-  static async signup(username, password, firstName, lastName, email) {
-    try {
-      let res = await this.request('auth/register', {username, password, firstName, lastName, email}, 'post');
-      return res.token;
-    } catch (err) {
-      return err;
-    }
-  }
+	static async signup(username, password, firstName, lastName, email) {
+		let res = await this.request('auth/register', { username, password, firstName, lastName, email }, 'post');
+		return res.token;
+	}
 
-  static async getUser(username) {
-    try {
-      let res = await this.request(`users/${username}`)
-      return res.user;
-    } catch (err) {
-      return err
-    }
-  }
+	static async getUser(username) {
+		let res = await this.request(`users/${username}`);
+		return res.user;
+	}
 	// obviously, you'll add a lot here ...
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' + 'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' + 'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
+// JoblyApi.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
 
 export default JoblyApi;

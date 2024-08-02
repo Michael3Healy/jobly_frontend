@@ -3,7 +3,7 @@ import useFields from "./hooks/useFields";
 import { useState } from "react";
 
 const LoginForm = ({ login }) => {
-    const [formData, handleChange, setFormData] = useFields({ username: '', password: '' });
+    const [formData, handleChange] = useFields({ username: '', password: '' });
     const [error, setError] = useState(null)
     const navigate = useNavigate();
 

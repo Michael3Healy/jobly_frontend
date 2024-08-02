@@ -21,7 +21,7 @@ const CompanyDetail = () => {
 			}
 		};
 		fetchCompanyData();
-	}, []);
+	}, [handle]);
 
 	if (isLoading) return <div>Loading&hellip;</div>;
 
