@@ -3,6 +3,7 @@ import JoblyApi from './api';
 import JobCard from './JobCard';
 import './JobList.css';
 
+// Component for the list of all jobs. Fetches the jobs from the backend and displays them as JobCard components.
 const JobList = () => {
 	const [jobs, setJobs] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +12,7 @@ const JobList = () => {
 	useEffect(() => {
 		const fetchJobs = async () => {
 			try {
-				const fetchedJobs = await JoblyApi.getAllJobs();
+				const fetchedJobs = await JoblyApi.getAllJobs(); // returns [{ id, title, salary, equity, companyHandle, companyName }, ...]
 				setJobs(fetchedJobs);
 			} catch (err) {
 				setError(err);

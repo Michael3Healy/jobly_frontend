@@ -1,5 +1,7 @@
 
-const CompanyCard = ({ handle, name, description, numEmployees }) => {
+
+// Displays a card with information about a company including the name, description, and number of employees.
+const CompanyCard = ({ name, description, numEmployees }) => {
 	return (
 		<div className='card my-3'>
 			<div className='row no-gutters'>

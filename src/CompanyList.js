@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './CompanyList.css';
 import useFields from './hooks/useFields';
 
+// Component for the list of all companies. Fetches the companies from the backend and displays them as CompanyCard components.
 const CompanyList = () => {
 	const [companies, setCompanies] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,10 @@ const CompanyList = () => {
 	const location = useLocation();
 
 	useEffect(() => {
+		// Get the search params from the URL and update the form data with them.
 		const params = new URLSearchParams(location.search);
+
+		// Create an object from the search params and update the form data with it: formData won't update in time for the fetch call.
 		const updatedFormData = {};
 		for (const [key, value] of params.entries()) {
 			updatedFormData[key] = value;
@@ -24,7 +28,7 @@ const CompanyList = () => {
 
 		const fetchCompanies = async () => {
 			try {
-				const fetchedCompanies = await JoblyApi.getAllCompanies(updatedFormData);
+				const fetchedCompanies = await JoblyApi.getAllCompanies(updatedFormData); // returns [{ handle, name, description, numEmployees, logoUrl }, ...]
 				setCompanies(fetchedCompanies);
 			} catch (err) {
 				setError(err);
@@ -36,6 +40,8 @@ const CompanyList = () => {
 	}, [location.search, setFormData]);
 
 	const handleSubmit = async e => {
+		// Prevent the form from refreshing the page, then navigate to the companies page with the search term.
+
 		e.preventDefault();
 		const searchTerm = formData.name;
 		navigate(`/companies?name=${searchTerm}`);
@@ -59,7 +65,7 @@ const CompanyList = () => {
 					</div>
 					{companies.map(c => (
 						<Link key={c.handle} to={`/companies/${c.handle}`} className='CompanyList-cardLink'>
-							<CompanyCard key={c.handle} handle={c.handle} name={c.name} description={c.description} numEmployees={c.numEmployees} />
+							<CompanyCard key={c.handle} name={c.name} description={c.description} numEmployees={c.numEmployees} />
 						</Link>
 					))}
 				</div>

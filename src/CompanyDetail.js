@@ -4,6 +4,7 @@ import JoblyApi from './api';
 import JobCard from './JobCard';
 import './CompanyDetail.css';
 
+// Component for the detail page of a company. Fetches the company data from the backend and displays it.
 const CompanyDetail = () => {
 	const { handle } = useParams();
 	const [company, setCompany] = useState({});
@@ -13,7 +14,10 @@ const CompanyDetail = () => {
 	useEffect(() => {
 		const fetchCompanyData = async () => {
 			try {
-				const fetchedCompany = await JoblyApi.getCompany(handle);
+
+				// returns { handle, name, description, numEmployees, logoUrl, jobs: [ { id, title, salary, equity }, ... ] }
+				const fetchedCompany = await JoblyApi.getCompany(handle); 
+				
 				setCompany(fetchedCompany);
 			} catch (err) {
 				setError(err);

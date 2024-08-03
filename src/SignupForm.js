@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './SignupForm.css';
 
+// Component for the signup form. The signup function is passed down from the parent component, which is the App component in this case.
 const SignupForm = ({ signup }) => {
 	const [formData, handleChange] = useFields({ username: '', password: '', firstName: '', lastName: '', email: '' });
 	const [error, setError] = useState(null);

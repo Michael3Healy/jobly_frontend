@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// Custom hook to handle local storage
 const useLocalStorage = (key, initialValue) => {
 	const [storedValue, setStoredValue] = useState(() => {
 		const item = localStorage.getItem(key);

@@ -1,7 +1,8 @@
 // ErrorAlert.js
 import React from 'react';
-import './ErrorAlert.css'; // Add your own styles
+import './ErrorAlert.css';
 
+// Component for displaying an error message.
 const ErrorAlert = ({ message }) => {
     return (
         <div className="ErrorAlert">

@@ -5,10 +5,10 @@ import { Navbar, Nav, NavItem } from 'reactstrap';
 import { useContext } from 'react';
 import UserContext from './userContext';
 
+// Component for the navigation bar. Displays different links based on whether the user is logged in.
 function NavBar({ logout }) {
 	const { currUser } = useContext(UserContext);
 
-	// eslint-disable-next-line
 	const loggedInLinks = (
 		<Nav className='ml-auto' navbar>
 			<NavItem>

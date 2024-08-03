@@ -3,8 +3,10 @@ import { useContext } from 'react';
 import UserContext from './userContext';
 import './Home.css';
 
+// Component for the home page. Displays a welcome message if the user is logged in, otherwise displays a login and signup button.
 const Home = () => {
 	const { currUser } = useContext(UserContext);
+
 	const welcomeMsg = <h2>Welcome Back, {currUser.username}</h2>;
 	const signupMsg = (
 		<div>

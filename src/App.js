@@ -10,6 +10,8 @@ import ErrorAlert from './ErrorAlert';
 
 // Main component for the application.
 function App() {
+
+	// Token initialized to the token stored in local storage, or an empty string if no token is stored. Same for currUser.
 	const [token, setToken] = useLocalStorage('token', '');
 
 	// currUser = {username, firstName, lastName, email, isAdmin, applications}
@@ -23,7 +25,7 @@ function App() {
 				const decodedToken = jwtDecode(token);
 				const username = decodedToken.username;
 
-				const user = await JoblyApi.getUser(username);
+				const user = await JoblyApi.getUser(username); // returns { username, firstName, lastName, email, isAdmin, applications }
 				setCurrUser(user);
 			} catch (err) {
 				console.error('Error fetching user: ', err);
@@ -31,10 +33,12 @@ function App() {
 		};
 
 		if (token) {
+
+			// Sets the token in the JoblyApi class  so requests are authenticaed and fetches the user data.
 			JoblyApi.token = token;
 			fetchUser();
 		}
-		// eslint to ignore the warning about the dependency array not including setCurrUser.
+		// eslint to ignore the warning about the dependency array not including setCurrUser. Including it would cause an infinite loop.
 		// eslint-disable-next-line
 	}, [token]);
 
@@ -70,6 +74,8 @@ function App() {
 	};
 
 	return (
+
+		// UserContext.Provider is used to provide the current user and the setCurrUser function to all child components.
 		<UserContext.Provider value={{ currUser, setCurrUser }}>
 			<div className='App'>
 				<NavBar logout={logout} />

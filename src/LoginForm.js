@@ -4,6 +4,11 @@ import { useState } from 'react';
 import './LoginForm.css';
 
 const LoginForm = ({ login }) => {
+	// The login function is passed down from the parent component, which is the App component in this case.
+
+	/** useFields is a custom hook that returns an array with two elements: an object with form data and a function to update the form data.
+	 * It is passed in an object with the form fields and their initial values.
+	 */
 	const [formData, handleChange] = useFields({ username: '', password: '' });
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();

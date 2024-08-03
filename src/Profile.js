@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 import JoblyApi from './api';
 
+
+// Component for the user profile page. Allows the user to update their first name, last name, and email.
 const Profile = () => {
 	const { currUser, setCurrUser } = useContext(UserContext);
 	const [formData, handleChange] = useFields({firstName: currUser.firstName, lastName: currUser.lastName, email: currUser.email});
@@ -14,7 +16,7 @@ const Profile = () => {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			await JoblyApi.updateUser(currUser.username, formData);
+			await JoblyApi.updateUser(currUser.username, formData); // returns { username, firstName, lastName, email, isAdmin, applications }
 			setCurrUser({ ...currUser, ...formData });
 			navigate('/');
 		} catch (err) {
