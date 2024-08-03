@@ -58,7 +58,7 @@ const CompanyList = () => {
 						</div>
 					</div>
 					{companies.map(c => (
-						<Link to={`/companies/${c.handle}`} className='CompanyList-cardLink'>
+						<Link key={c.handle} to={`/companies/${c.handle}`} className='CompanyList-cardLink'>
 							<CompanyCard key={c.handle} handle={c.handle} name={c.name} description={c.description} numEmployees={c.numEmployees} />
 						</Link>
 					))}

@@ -3,18 +3,25 @@ import UserContext from './userContext';
 import useFields from './hooks/useFields';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
+import JoblyApi from './api';
 
 const Profile = () => {
 	const { currUser, setCurrUser } = useContext(UserContext);
-	const [formData, handleChange] = useFields(currUser);
+	const [formData, handleChange] = useFields({firstName: currUser.firstName, lastName: currUser.lastName, email: currUser.email});
 
 	const navigate = useNavigate();
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		setCurrUser({ ...currUser, ...formData });
-		navigate('/');
+	const handleSubmit = async (e) => {
+		try {
+			e.preventDefault();
+			await JoblyApi.updateUser(currUser.username, formData);
+			setCurrUser({ ...currUser, ...formData });
+			navigate('/');
+		} catch (err) {
+			console.error('Error updating user: ', err);
+		}
 	};
+
 	return (
 		<div className='Profile container'>
 			<div className='row justify-content-center'>
@@ -22,7 +29,7 @@ const Profile = () => {
 					<form className='bg-light p-4 rounded shadow-md' onSubmit={handleSubmit}>
 						<div className='input-group d-flex align-items-center mb-4'>
 							<label className='form-label mx-3' htmlFor='username'>Username: </label>
-							<input className='form-control' type='text' id='username' name='username' onChange={handleChange} value={formData.username} />
+							<input className='form-control' type='text' id='username' name='username' value={currUser.username} disabled />
 						</div>
 
 						<div className='input-group d-flex align-items-center mb-4'>
