@@ -5,6 +5,8 @@
 	"dependencies": {
 		"@testing-library/user-event": "^13.5.0",
 		"axios": "^1.7.3",
+		"@babel/core": "^7.25.2",
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"bootstrap": "^5.3.3",
 		"jsonschema": "^1.4.1",
 		"jwt-decode": "^4.0.0",
@@ -45,8 +47,6 @@
 		]
 	},
 	"devDependencies": {
-		"@babel/core": "^7.25.2",
-		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@babel/preset-env": "^7.25.3",
 		"@babel/preset-react": "^7.24.7",
 		"@testing-library/jest-dom": "^6.4.8",
