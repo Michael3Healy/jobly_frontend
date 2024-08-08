@@ -2,6 +2,8 @@
 
 **Jobly** is a comprehensive job searching application built with a backend using Node, Express, and PostgreSQL, and a frontend using React. This application allows users to search for job postings and companies, as well as apply for jobs, using an intuitive interface. This is the repository for the frontend. The backend repository can be found here: [Jobly Backend](https://github.com/Michael3Healy/jobly_backend)
 
+Link to live site: [Jobly](https://jobly-frontend-z13e.onrender.com)
+
 ## Frontend Features
 
 ### User Interface
